@@ -1,0 +1,33 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+input:focus {
+  outline: none;
+  border-color: blue;
+  box-shadow: 0 0 5px blue;
+}
+.btn-sbt{
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: blue;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+.cnl{
+  background: red;
+  border:none;
+  cursor:pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
