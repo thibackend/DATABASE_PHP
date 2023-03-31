@@ -1,14 +1,11 @@
 <?php
+session_start();
 $add=$_GET['add'];
 ?>
 <html>
     <link rel="stylesheet" href="style.css">
     <body>
-        <form method="POST" action="<?php if(isset($_POST['update'])){
-        $action="../update.php";
-        }elseif(isset($_POST["add"])){
-        $action="../add.php";
-        } echo $action;?>" enctype="multipart/form-data"> 
+        <form method="POST" action="" enctype="multipart/form-data"> 
         <table>
             <tr>
                 <th> <label for="tenSP">Tên sản phẩm:</label></th>
@@ -58,13 +55,35 @@ $add=$_GET['add'];
 
 
         </table>
-    <?php if($add =="add"){ ?>
-            <input type="submit" name="add" value="Thêm">
+    <?php
+        if(isset($_POST["add"]) or isset($_POST["update"])){
+            $data = [
+                "tenSP"=>$_POST["tenSP"],
+                "DanhMucSP"=>$_POST["DanhMucSP"],
+                "Price"=>$_POST["Price"],
+                "PTGiam"=>$_POST["PTGiam"],
+                "soluong"=>$_POST["soluong"],
+                "img"=>$_POST["img"],
+                "search"=>$_POST["search"],
+                "desc"=>$_POST["desc"]
+            ];
+            $_SESSION["data"]=$data;
+
+            if(isset($_POST["add"])){
+                header("location: process/add.php");
+            }else if(isset($_POST["update"])){
+                header("location: process/update.php");
+            }
+        }
+     if($add =="add"){ ?>
+            <input type="submit" name="add" value="ADD">
     <?php }else {  
         $id = $_GET['id'];
          ?>
-            <input type="submit" name="update" value="Update">
-            <?php }?>
+            <input type="submit" name="update" value="UPDATE">
+            <?php }
+            
+        ?>
         </form>
        
 
