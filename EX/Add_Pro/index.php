@@ -1,3 +1,8 @@
+<?php 
+require "database/connect.php"; 
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,28 +34,34 @@
                     <th>Price</th>
                     <th>Discount</th>
                     <th>Amount</th>
-                    <th>Image</th>
                     <th>Search Keyword</th>
                     <th>Description</th>
                     <th>Action</th>
                 </tr>
             </thead>
+            <?php 
+            $query ="SELECT *FROM product_ex;";
+            $result =mysqli_query($conn,$query);
+
+            ?>
+
             <tbody>
+            <?php while($data = mysqli_fetch_assoc($result)){  ?>
                 <tr>
-                    <td>1</td>
-                    <td>Product Name</td>
-                    <td>Category Name</td>
-                    <td>$19.99</td>
-                    <td>10%</td>
-                    <td>50</td>
-                    <td><img src="image.jpg" alt="Product Image"></td>
-                    <td>Keyword1, Keyword2</td>
-                    <td>Product Description</td>
+                    <td><?php echo $data["idsp"]?></td>
+                    <td><?php echo $data["tensp"]?></td>
+                    <td><?php echo $data["danhmucsp"]?></td>
+                    <td><?php echo $data["gia"]?></td>
+                    <td><?php echo $data["ptgiam"]?></td>
+                    <td><?php echo $data["soluong"]?></td>
+                    <td><?php echo $data["tukhoakiem"]?></td>
+                    <td><?php echo $data["mota"]?></td>
                     <td>
-                        <a href="A_Updt.php?add=0 && id=<?php $id= 3; echo $id;?>">update</a> 
-                        <a href="A_Updt.php?id='<?php echo 3;?>'">delete</a>
+                        <a href="A_Updt.php?add=0 && id=<?php echo $data["idsp"]?>">update</a> 
+                        <a href="A_Updt.php?id='<?php echo $data["idsp"];?>'">delete</a>
                     </td>
                 </tr>
+                <?php } ?>
                 <!-- Add more rows here -->
             </tbody>
         </table>
